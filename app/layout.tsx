@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Prompt } from 'next/font/google';
-
 import Navigation from "./conponents/Navigation";
+
 
 const prompt = Prompt({
   subsets: ['thai', 'latin'], // รองรับภาษาไทย
