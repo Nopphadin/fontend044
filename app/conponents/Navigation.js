@@ -20,7 +20,7 @@ export default function Navigation() {
           <a className="nav-link active" aria-current="page" href="#">Fontend</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">หน้าแรก</a>
+          <a className="nav-link" href="/about">หน้าแรก</a>
         </li>
          <li className="nav-item">
           <a className="nav-link" href="#">เกี่ยวกับเรา</a>
