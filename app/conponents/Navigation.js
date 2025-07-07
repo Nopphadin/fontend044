@@ -22,9 +22,12 @@ export default function Navigation() {
         <li className="nav-item">
           <a className="nav-link" href="#">หน้าแรก</a>
         </li>
+         <li className="nav-item">
+          <a className="nav-link" href="#">เกี่ยวกับเรา</a>
+        </li>
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            เกี่ยวกับเรา
+            บริการ
           </a>
           <ul className="dropdown-menu">
             <li><a className="dropdown-item" href="#">Action</a></li>
