@@ -2,7 +2,7 @@
 export default function service() {
   return(
     <>
-    <h1 className="text-4xl text-center text-black-500">เกี่ยวกับเรา</h1></>
+    <h1 className="text-4xl text-center text-black-500">Home2</h1></>
   )
 }
     
