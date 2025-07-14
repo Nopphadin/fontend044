@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { Geist, Geist_Mono } from "next/font/google";
 import Navigation from "./conponents/Navigation";
 import { Prompt } from 'next/font/google';
 
@@ -10,15 +9,6 @@ const prompt = Prompt({
   display: 'swap',
 });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: 'เว็บไซต์ของคุณ',

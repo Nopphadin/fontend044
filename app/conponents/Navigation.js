@@ -20,14 +20,14 @@ export default function Navigation() {
           <a className="nav-link active" aria-current="page" href="#">Fontend</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/about">หน้าแรก</a>
+          <a className="nav-link" href="/">หน้าแรก</a>
         </li>
          <li className="nav-item">
-          <a className="nav-link" href="/contact">เกี่ยวกับเรา</a>
+          <a className="nav-link" href="/about">เกี่ยวกับเรา</a>
         </li>
         <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            บริการ
+           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            บริการต่างๆ
           </a>
           <ul className="dropdown-menu">
             <li><a className="dropdown-item" href="#">Action</a></li>
@@ -36,17 +36,27 @@ export default function Navigation() {
             <li><a className="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <a className="nav-link disabled" aria-disabled="true">ติดต่อเรา</a>
+        </li> */}
+       
+        
+           <li className="nav-item">
+          <a className="nav-link dropdown-toggle" href="/contact">ติดต่อ</a>
         </li>
+
+      <a href="login" className="btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700">Login</a>
+
       </ul>
       <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-        <button className="btn btn-outline-success" type="submit">Search</button>
+        <button className="btn btn-outline-success me-2" type="submit">Search</button>
       </form>
     </div>
+    
   </div>
 </nav>
+
 
 
   );
