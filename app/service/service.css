@@ -1,0 +1,70 @@
+.store-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+  padding: 3rem 2rem;
+  color: #f4f4f4;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.store-title {
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+  color: #e0d7ff;
+  text-shadow: 0 0 8px #845ec2;
+}
+
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.game-card {
+  background-color: #f0f0f0;
+  color: #2c2c2c;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  padding: 1.2rem;
+  text-align: left;
+  transition: transform 0.2s;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+}
+
+.game-img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.game-card h2 {
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+  color: #1a1a1a;
+}
+
+.game-card p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.buy-btn {
+  background-color: #845ec2;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.buy-btn:hover {
+  background-color: #a178e6;
+}
