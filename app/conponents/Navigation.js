@@ -30,7 +30,7 @@ export default function Navigation() {
         </li>
 
         <li className="nav-item">
-          <Link href="/service" className="nav-link">ร้านค้า</Link>
+          <Link href="/service" className="nav-link">ร้านค้าค้นหา</Link>
         </li>
 
         <li className="nav-item dropdown">
