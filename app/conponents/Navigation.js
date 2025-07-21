@@ -16,36 +16,34 @@ export default function Navigation() {
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
         <li className="nav-item">
           <a className="nav-link active" aria-current="page" href="#">Fontend</a>
         </li>
+
         <li className="nav-item">
-          <a className="nav-link" href="/">หน้าแรก</a>
+          <Link href="/"className="nav-link">หน้าแรก</Link>
         </li>
+
          <li className="nav-item">
-          <a className="nav-link" href="/about">เกี่ยวกับเรา</a>
+          <Link href="/about"className="nav-link">เกี่ยวกับเรา</Link>
         </li>
         <li className="nav-item dropdown">
-           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <Link className="nav-link dropdown-toggle" href="service" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             บริการต่างๆ
-          </a>
+          </Link>
           <ul className="dropdown-menu">
             <li><a className="dropdown-item" href="#">Action</a></li>
             <li><a className="dropdown-item" href="#">Another action</a></li>
             <li><hr className="dropdown-divider" /></li>
             <li><a className="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
-        {/* <li className="nav-item">
-          <a className="nav-link disabled" aria-disabled="true">ติดต่อเรา</a>
-        </li> */}
-       
-        
+        </li>    
            <li className="nav-item">
-          <a className="nav-link dropdown-toggle" href="/contact">ติดต่อ</a>
+          <Link href="/contact" className="nav-link dropdown-toggle">ติดต่อ</Link>
         </li>
 
-      <a href="login" className="btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700">Login</a>
+      {/* <a href="login" className="btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700">Login</a> */}
 
       </ul>
       <form className="d-flex" role="search">
@@ -53,8 +51,12 @@ export default function Navigation() {
         <button className="btn btn-outline-success me-2" type="submit">Search</button>
       </form>
     </div>
-    
-  </div>
+
+    <div className='d-flex gap-2'>
+     <Link href="/login" className="btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700">Login</Link>
+     <Link href="/register" className='btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700'>สมัครสมาชิก</Link>
+    </div>
+  </div> 
 </nav>
 
 
