@@ -28,20 +28,23 @@ export default function Navigation() {
          <li className="nav-item">
           <Link href="/about"className="nav-link">เกี่ยวกับเรา</Link>
         </li>
+
+        <li className="nav-item">
+          <Link href="/service" className="nav-link">ร้านค้า</Link>
+        </li>
+
         <li className="nav-item dropdown">
-           <Link className="nav-link dropdown-toggle" href="service" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            บริการต่างๆ
+           <Link className="nav-link dropdown-toggle" href="/contact" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ติดต่อ
           </Link>
           <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
+            <li><a className="dropdown-item" href="#">Facebook</a></li>
+            <li><a className="dropdown-item" href="#">Line</a></li>
             <li><hr className="dropdown-divider" /></li>
             <li><a className="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>    
-           <li className="nav-item">
-          <Link href="/contact" className="nav-link dropdown-toggle">ติดต่อ</Link>
-        </li>
+           
 
       {/* <a href="login" className="btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700">Login</a> */}
 
