@@ -58,6 +58,7 @@ export default function Navigation() {
     <div className='d-flex gap-2'>
      <Link href="/login" className="btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700">Login</Link>
      <Link href="/register" className='btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700'>สมัครสมาชิก</Link>
+     <Link href="/Admin\users" className='btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700'>Admin</Link>
     </div>
   </div> 
 </nav>

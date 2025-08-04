@@ -1,13 +1,16 @@
 "use client";
 import React, { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import './register.css'
+import './register.css';
+import Swal from 'sweetalert2';
 
 const Register: React.FC = () => {
   const router = useRouter();
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
+    confirmPassword: '', // ✅ เพิ่ม
     prefix: '',
     firstName: '',
     lastName: '',
@@ -27,14 +30,71 @@ const Register: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (!formData.acceptedTerms) {
-      alert('กรุณายอมรับเงื่อนไขก่อนสมัครสมาชิก');
+      Swal.fire({
+        icon: 'warning',
+        title: 'กรุณายอมรับเงื่อนไขการใช้งาน',
+      });
       return;
     }
-    console.log(formData);
-    router.push('/login');
+
+    if (formData.password !== formData.confirmPassword) {
+      Swal.fire({
+        icon: 'error',
+        title: 'รหัสผ่านไม่ตรงกัน',
+      });
+      return;
+    }
+
+    const bodyData = {
+      username: formData.username,
+      password: formData.password,
+      firstname: formData.firstName,
+      lastname: formData.lastName,
+      fullname: `${formData.prefix}${formData.firstName} ${formData.lastName}`, // ✅ แก้จาก ${} ให้ใส่ใน backtick ``
+      gender: formData.gender,
+      address: formData.address,
+      birthdate: formData.birthdate, // ✅ ใช้ birthdate โดยตรง
+    };
+
+    try {
+      const res = await fetch('http://itdev.cmtc.ac.th:3000/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(bodyData),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'สมัครสมาชิกสำเร็จ!',
+          text: 'คุณสามารถเข้าสู่ระบบได้ทันที',
+        }).then(() => {
+          router.push('/login');
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'เกิดข้อผิดพลาด!',
+          text: result?.message || 'ไม่สามารถสมัครสมาชิกได้',
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'เกิดข้อผิดพลาด',
+        text: 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้',
+      });
+      console.error(error);
+    }
   };
 
   return (
@@ -47,9 +107,9 @@ const Register: React.FC = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="register-form">
-          {/* บัญชีผู้ใช้ */}
           <div className="form-section">
             <h3>บัญชีผู้ใช้</h3>
+
             <label>ชื่อผู้ใช้ หรือ อีเมลล์</label>
             <input
               type="text"
@@ -68,19 +128,19 @@ const Register: React.FC = () => {
               required
             />
 
-            <label>รหัสผ่าน(ยื่นยันอีกรอบ)</label>
+            <label>รหัสผ่าน (ยืนยันอีกครั้ง)</label>
             <input
               type="password"
-              name="password"
-              value={formData.password}
+              name="confirmPassword"
+              value={formData.confirmPassword}
               onChange={handleChange}
               required
             />
           </div>
 
-          {/* ข้อมูลส่วนตัว */}
           <div className="form-section">
             <h3>ข้อมูลส่วนตัว</h3>
+
             <label>คำนำหน้าชื่อ</label>
             <select
               name="prefix"
@@ -89,10 +149,10 @@ const Register: React.FC = () => {
               required
             >
               <option value="">-- เลือก --</option>
-              <option value="mr">นาย</option>
-              <option value="mrs">นาง</option>
-              <option value="miss">นางสาว</option>
-              <option value="miss">ไม่ระบุ</option>
+              <option value="นาย">นาย</option>
+              <option value="นาง">นาง</option>
+              <option value="นางสาว">นางสาว</option>
+              <option value="">ไม่ระบุ</option>
             </select>
 
             <label>ชื่อ</label>
@@ -131,9 +191,8 @@ const Register: React.FC = () => {
                   value="male"
                   checked={formData.gender === 'male'}
                   onChange={handleChange}
-                  required
                 />
-              ชาย
+                ชาย
               </label>
               <label>
                 <input
@@ -143,7 +202,7 @@ const Register: React.FC = () => {
                   checked={formData.gender === 'female'}
                   onChange={handleChange}
                 />
-              หญิง
+                หญิง
               </label>
               <label>
                 <input
@@ -153,11 +212,10 @@ const Register: React.FC = () => {
                   checked={formData.gender === 'other'}
                   onChange={handleChange}
                 />
-              อื่นๆ
+                อื่นๆ
               </label>
             </div>
 
-            {/* กล่องที่อยู่ */}
             <label>ที่อยู่</label>
             <textarea
               name="address"
@@ -169,7 +227,6 @@ const Register: React.FC = () => {
             ></textarea>
           </div>
 
-          {/* ยอมรับเงื่อนไข */}
           <div className="checkbox-inline">
             <input
               type="checkbox"
@@ -182,7 +239,6 @@ const Register: React.FC = () => {
             <label htmlFor="acceptedTerms">ฉันยอมรับเงื่อนไขการใช้งาน</label>
           </div>
 
-          {/* ปุ่มลงทะเบียน */}
           <button type="submit" className="btn-register">
             ลงทะเบียน
           </button>
