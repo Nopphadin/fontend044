@@ -2,6 +2,7 @@
 import React, { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import './login.css';
+import Swal from 'sweetalert2';
 
 const Login: React.FC = () => {
   const router = useRouter();
@@ -20,16 +21,37 @@ const Login: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // ตัวอย่างเช็คง่ายๆ
     if (!formData.username || !formData.password) {
-      alert("กรุณากรอกชื่อผู้ใช้และรหัสผ่าน");
+      await Swal.fire({
+        icon: 'warning',
+        title: 'กรุณากรอกชื่อผู้ใช้และรหัสผ่าน',
+      });
       return;
     }
-    console.log("Login data:", formData);
     // สมมุติว่าล็อกอินสำเร็จ
-    router.push("/dashboard"); // หรือหน้าอื่นที่ต้องการ
+    try {
+      localStorage.setItem('isLoggedIn', 'true');
+    } catch {}
+
+    await Swal.fire({
+      icon: 'success',
+      title: 'เข้าสู่ระบบสำเร็จ!',
+      text: 'ต้องการไปหน้า Admin หรือหน้าแรก?',
+      showCancelButton: true,
+      confirmButtonText: 'ไปหน้า Admin',
+      cancelButtonText: 'หน้าแรก',
+      confirmButtonColor: '#f59e0b',
+      cancelButtonColor: '#3b82f6',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        router.push('/Admin/users');
+      } else {
+        router.push('/');
+      }
+    });
   };
 
   return (

@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react';
+import Swal from 'sweetalert2'
 
 export default function Page() {
   const [items, setItems] = useState([]);
@@ -47,6 +48,30 @@ export default function Page() {
     if (s === 'ชาย' || s.toLowerCase() === 'male') return 'bg-info';
     if (s === 'หญิง' || s.toLowerCase() === 'female') return 'bg-danger';
     return 'bg-secondary';
+  };
+
+  const handleDelete = async (id) => {
+    const result = await Swal.fire({
+      title: 'ยืนยันการลบ?',
+      text: 'คุณต้องการลบผู้ใช้นี้หรือไม่',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'ลบ',
+      cancelButtonText: 'ยกเลิก',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#6c757d',
+      reverseButtons: true,
+    });
+    if (!result.isConfirmed) return;
+
+    try {
+      const res = await fetch(`http://itdev.cmtc.ac.th:3000/api/users/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Delete failed');
+      await Swal.fire({ icon: 'success', title: 'ลบเรียบร้อย', timer: 1200, showConfirmButton: false });
+      setItems((prev) => prev.filter((u) => u.id !== id));
+    } catch (error) {
+      Swal.fire({ icon: 'error', title: 'ลบไม่สำเร็จ', text: 'เกิดข้อผิดพลาด', confirmButtonText: 'ตกลง' });
+    }
   };
 
   return (
@@ -114,7 +139,7 @@ export default function Page() {
                       <Link href={`/Admin/users/edit/${item.id}`} className="btn btn-outline-warning btn-sm">Edit</Link>
                     </td>
                     <td className='text-center'>
-                      <button className="btn btn-outline-danger btn-sm" type="button">Del</button>
+                      <button className="btn btn-outline-danger btn-sm" type="button" onClick={() => handleDelete(item.id)}>Del</button>
                     </td>
                   </tr>
                 ))}

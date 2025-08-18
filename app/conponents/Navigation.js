@@ -11,6 +11,7 @@ export default function Navigation() {
     { href: '/service', label: 'ร้านค้าค้นหา' },
   ];
 
+  
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm"
@@ -125,10 +126,7 @@ export default function Navigation() {
             <Link href="/register" className="btn btn-light text-primary">
               สมัครสมาชิก
             </Link>
-            <Link href="/Admin/users" className="btn btn-warning">
-              Admin
-            </Link>
-          </div>
+                      </div>
         </div>
       </div>
     </nav>
