@@ -1,111 +1,195 @@
+/* Genshin Impact inspired Login UI */
+
+/* Wrapper: sky gradient with floating clouds */
 .login-wrapper {
   min-height: 100vh;
-  background: #1a0033;
-  background-image: url('/game.png'),
-                     url('/to.png');
-  background-repeat: no-repeat, no-repeat;
-  background-position: top left, bottom right;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
   padding: 2rem;
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #f3e8ff;
+  color: #2b2b2b;
+  background: linear-gradient(180deg, #bfe5ff 0%, #eaf6ff 48%, #fffaf0 100%);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Soft moving clouds using radial gradients */
+.login-wrapper::before,
+.login-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -10% -10% auto -10%;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  filter: blur(6px) saturate(105%);
+  opacity: 0.75;
+  animation: floatClouds 38s ease-in-out infinite alternate;
+}
+
+.login-wrapper::before {
+  background-image:
+    radial-gradient(ellipse at 10% 15%, rgba(255,255,255,0.9) 0 20%, transparent 45%),
+    radial-gradient(ellipse at 28% 25%, rgba(255,255,255,0.8) 0 22%, transparent 50%),
+    radial-gradient(ellipse at 70% 12%, rgba(255,255,255,0.85) 0 18%, transparent 48%),
+    radial-gradient(ellipse at 85% 28%, rgba(255,255,255,0.75) 0 16%, transparent 44%);
+}
+
+.login-wrapper::after {
+  inset: auto -15% -15% -15%;
+  opacity: 0.6;
+  animation-duration: 46s;
+  background-image:
+    radial-gradient(ellipse at 15% 70%, rgba(255,255,255,0.9) 0 22%, transparent 46%),
+    radial-gradient(ellipse at 35% 85%, rgba(255,255,255,0.85) 0 20%, transparent 44%),
+    radial-gradient(ellipse at 75% 80%, rgba(255,255,255,0.8) 0 24%, transparent 48%),
+    radial-gradient(ellipse at 92% 68%, rgba(255,255,255,0.75) 0 18%, transparent 45%);
+}
+
+@keyframes floatClouds {
+  from { transform: translateY(-8px) translateX(0); }
+  to   { transform: translateY(8px) translateX(12px); }
+}
+
+/* Glass card with gold accent */
 .login-card {
-  background: linear-gradient(145deg, #4d0000, #1a0033);
-  padding: 3rem 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 0 30px #9b59b6aa;
   width: 100%;
-  max-width: 400px;
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(218, 188, 120, 0.6);
+  border-radius: 24px;
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  box-shadow: 0 18px 40px rgba(42, 63, 94, 0.18), 0 2px 0 rgba(247, 236, 210, 0.9) inset;
+  padding: 2.4rem 2rem;
+  position: relative;
   text-align: center;
 }
 
+/* Ornamental gold corners */
+.login-card::before,
+.login-card::after {
+  content: '';
+  position: absolute;
+  height: 14px;
+  width: 46px;
+  top: 12px;
+  border-top: 2px solid rgba(218,188,120,0.9);
+}
+.login-card::before { left: 18px; }
+.login-card::after  { right: 18px; }
+
 .login-card h2 {
-  font-size: 2.4rem;
-  color: #d8b9ff;
-  margin-bottom: 0.5rem;
+  font-size: 2.2rem;
+  line-height: 1.15;
+  margin: 0 0 0.5rem 0;
   font-weight: 800;
-  letter-spacing: 1.2px;
-  text-shadow: 0 0 10px #b495ff;
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  letter-spacing: 0.6px;
+  color: #3b3b3b;
+  text-shadow: 0 1px 0 #fff, 0 10px 24px rgba(0,0,0,0.08);
+  font-family: 'Georgia', 'Times New Roman', serif;
 }
 
 .login-card .subtitle {
-  font-size: 1.15rem;
-  color: #cdbaffcc;
-  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  color: #6f6a55;
+  margin-bottom: 1.8rem;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
 }
 
+/* Labels */
 .login-form label {
   display: block;
   text-align: left;
-  margin-bottom: 0.4rem;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #e2d7ffcc;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #7b6a42; /* warm brown-gold */
 }
 
+/* Inputs with subtle icons */
 .login-form input[type="text"],
 .login-form input[type="password"] {
   width: 100%;
-  padding: 0.85rem 1.2rem;
-  border: 2px solid #7f4fffcc;
-  border-radius: 16px;
-  margin-bottom: 1.5rem;
-  font-size: 1.15rem;
-  background: #2c004d;
-  color: #f3e8ff;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  padding: 0.85rem 1rem 0.85rem 2.6rem;
+  border: 1.5px solid #e6d7b3;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  background: rgba(255,255,255,0.9);
+  color: #2f2f2f;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
 }
+
+.login-form input[type="text"] {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='7' r='4' stroke='%238c7a4b' stroke-width='1.6'/%3E%3Cpath d='M4 20c1.6-3.4 4.7-5.2 8-5.2s6.4 1.8 8 5.2' stroke='%238c7a4b' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+
+.login-form input[type="password"] {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='5' y='10' width='14' height='10' rx='2' stroke='%238c7a4b' stroke-width='1.6'/%3E%3Cpath d='M8 10V7a4 4 0 018 0v3' stroke='%238c7a4b' stroke-width='1.6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+
+.login-form input::placeholder { color: #9aa5b1; font-weight: 500; }
 
 .login-form input:focus {
-  border-color: #b496ff;
-  box-shadow: 0 0 12px #c4b0ffcc;
+  border-color: #d6bc7a;
+  box-shadow: 0 0 0 4px rgba(224, 196, 137, 0.25);
   outline: none;
+  background: #ffffff;
 }
 
+/* Golden primary button */
 .btn-login {
   width: 100%;
-  background: linear-gradient(90deg, #b496ff, #d8b9ff);
-  color: #2c004d;
-  padding: 1rem 0;
-  border: none;
-  border-radius: 30px;
-  font-size: 1.3rem;
+  background: linear-gradient(180deg, #f7dba3 0%, #e9c57a 45%, #d4a64f 100%);
+  color: #3e2b14;
+  padding: 0.9rem 0;
+  border: 1px solid #d7b26a;
+  border-radius: 999px;
+  font-size: 1.15rem;
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 7px 20px #c4b0ffcc;
-  transition: background 0.4s ease, color 0.4s ease;
-  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 10px 24px rgba(205, 164, 84, 0.35), inset 0 1px 0 #fff6dd;
+  transition: transform 0.12s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .btn-login:hover {
-  background: linear-gradient(90deg, #d8b9ff, #b496ff);
-  color: #fff;
+  filter: brightness(1.02) saturate(1.02);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(205, 164, 84, 0.42), inset 0 1px 0 #fff6dd;
 }
 
+.btn-login:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(205, 164, 84, 0.3), inset 0 1px 0 #fff6dd;
+}
+
+/* Register link */
 .register-link {
-  margin-top: 1.8rem;
-  font-size: 1.1rem;
-  color: #bfa7ffcc;
+  margin-top: 1.2rem;
+  font-size: 0.98rem;
+  color: #6f6a55;
   font-weight: 600;
 }
 
 .register-link a {
-  color: #d8b9ff;
-  font-weight: 700;
+  color: #c49d57;
+  font-weight: 800;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .register-link a:hover {
-  color: #fff;
-  text-decoration: underline;
+  color: #a27f3e;
+  text-shadow: 0 1px 0 #fff1cb;
+}
+
+/* Small helpers for tighter spacing on mobile */
+@media (max-width: 420px) {
+  .login-card { padding: 1.8rem 1.2rem; }
+  .login-card h2 { font-size: 1.8rem; }
 }
