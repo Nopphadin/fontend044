@@ -38,10 +38,10 @@ export default function Navigation() {
             ติดต่อ
           </Link>
           <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Facebook</a></li>
+            <li><a className="dropdown-item" href="https://www.facebook.com/nopphadon.chaiya.2024">Facebook</a></li>
             <li><a className="dropdown-item" href="#">Line</a></li>
             <li><hr className="dropdown-divider" /></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
+            <li><a className="dropdown-item" href="https://it.cmtc.ac.th/">Something else here</a></li>
           </ul>
         </li>    
            
@@ -58,7 +58,7 @@ export default function Navigation() {
     <div className='d-flex gap-2'>
      <Link href="/login" className="btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700">Login</Link>
      <Link href="/register" className='btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700'>สมัครสมาชิก</Link>
-     <Link href="/Admin\users" className='btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700'>Admin</Link>
+     <Link href="/Admin/users" className='btn relative btn-primary flex items-center justify-center px-4 py-2 rounded text-white bg-blue-600 hover:bg-blue-700'>Admin</Link>
     </div>
   </div> 
 </nav>
