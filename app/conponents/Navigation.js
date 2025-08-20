@@ -144,7 +144,7 @@ export default function Navigation() {
 
           <div className="d-flex gap-2">
             <Link href="/login" className="btn btn-outline-light">
-              เข้าสู่ระบบ
+              Login
             </Link>
             <Link href="/register" className="btn btn-light text-primary">
               สมัครสมาชิก

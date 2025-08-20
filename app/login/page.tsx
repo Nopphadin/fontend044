@@ -57,7 +57,7 @@ const Login: React.FC = () => {
   return (
     <div className="login-wrapper">
       <div className="login-card">
-        <h2>เข้าสู่ระบบ</h2>
+        <h2>Login</h2>
         <p className="subtitle">
           กรุณากรอกข้อมูลเพื่อเข้าสู่ระบบ
         </p>
